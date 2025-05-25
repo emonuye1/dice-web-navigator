@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Copyright } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 
 const WebApp = () => {
@@ -33,35 +33,47 @@ const WebApp = () => {
 
   if (!currentApp) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
-        <div className="text-center text-white">
-          <h1 className="text-3xl font-bold mb-4">Aplikasi Tidak Ditemukan</h1>
-          <Link to="/">
-            <Button className="bg-blue-500 hover:bg-blue-600">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Kembali ke Dashboard
-            </Button>
-          </Link>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col">
+        <div className="flex-grow flex items-center justify-center p-4">
+          <div className="text-center text-white">
+            <h1 className="text-2xl sm:text-3xl font-bold mb-4">Aplikasi Tidak Ditemukan</h1>
+            <Link to="/">
+              <Button className="bg-blue-500 hover:bg-blue-600">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Kembali ke Dashboard
+              </Button>
+            </Link>
+          </div>
         </div>
+        
+        {/* Copyright Footer */}
+        <footer className="py-4 border-t border-white/20">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 text-slate-400 text-sm">
+              <Copyright className="w-4 h-4" />
+              <span>Copyright by Firman</span>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col">
       {/* Header dengan tombol kembali */}
-      <div className="bg-black/30 backdrop-blur-sm border-b border-white/20 p-4">
+      <div className="bg-black/30 backdrop-blur-sm border-b border-white/20 p-3 sm:p-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link to="/">
               <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Kembali
+                <ArrowLeft className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Kembali</span>
               </Button>
             </Link>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-              <ExternalLink className="w-6 h-6" />
-              {currentApp.title}
+            <h1 className="text-lg sm:text-2xl font-bold text-white flex items-center gap-2">
+              <ExternalLink className="w-5 h-5 sm:w-6 sm:h-6" />
+              <span className="truncate">{currentApp.title}</span>
             </h1>
           </div>
           
@@ -72,15 +84,15 @@ const WebApp = () => {
             className="text-slate-300 hover:text-white transition-colors"
           >
             <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
-              <ExternalLink className="w-4 h-4 mr-2" />
-              Buka di Tab Baru
+              <ExternalLink className="w-4 h-4 sm:mr-2" />
+              <span className="hidden sm:inline">Buka di Tab Baru</span>
             </Button>
           </a>
         </div>
       </div>
 
       {/* Iframe untuk menampilkan aplikasi web */}
-      <div className="h-[calc(100vh-80px)]">
+      <div className="flex-grow">
         <iframe
           src={currentApp.url}
           className="w-full h-full border-0"
@@ -89,6 +101,16 @@ const WebApp = () => {
           loading="lazy"
         />
       </div>
+
+      {/* Copyright Footer */}
+      <footer className="py-2 sm:py-4 border-t border-white/20 bg-black/20">
+        <div className="text-center">
+          <div className="flex items-center justify-center gap-2 text-slate-400 text-xs sm:text-sm">
+            <Copyright className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span>Copyright by Firman</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
