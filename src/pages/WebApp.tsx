@@ -102,7 +102,6 @@ const WebApp = () => {
           style={{
             width: '100%',
             height: '100%',
-            minHeight: 'calc(100vh - 120px)',
             minHeight: 'calc(100dvh - 120px)'
           }}
         />
