@@ -60,9 +60,9 @@ const WebApp = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col">
+    <div className="min-h-screen min-h-[100dvh] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col">
       {/* Header dengan tombol kembali */}
-      <div className="bg-black/30 backdrop-blur-sm border-b border-white/20 p-3 sm:p-4">
+      <div className="bg-black/30 backdrop-blur-sm border-b border-white/20 p-3 sm:p-4 flex-shrink-0">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2 sm:gap-4">
             <Link to="/">
@@ -92,18 +92,24 @@ const WebApp = () => {
       </div>
 
       {/* Iframe untuk menampilkan aplikasi web */}
-      <div className="flex-grow">
+      <div className="flex-grow overflow-hidden">
         <iframe
           src={currentApp.url}
-          className="w-full h-full border-0"
+          className="w-full h-full border-0 min-h-[70vh] min-h-[70dvh]"
           title={currentApp.title}
           allow="fullscreen"
           loading="lazy"
+          style={{
+            width: '100%',
+            height: '100%',
+            minHeight: 'calc(100vh - 120px)',
+            minHeight: 'calc(100dvh - 120px)'
+          }}
         />
       </div>
 
       {/* Copyright Footer */}
-      <footer className="py-2 sm:py-4 border-t border-white/20 bg-black/20">
+      <footer className="py-2 sm:py-4 border-t border-white/20 bg-black/20 flex-shrink-0">
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 text-slate-400 text-xs sm:text-sm">
             <Copyright className="w-3 h-3 sm:w-4 sm:h-4" />
