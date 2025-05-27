@@ -1,25 +1,60 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>dice-web-navigator</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <title>Dashboard Aplikasi Dadu</title>
+    <meta name="description" content="Dashboard untuk mengakses aplikasi remote dan monitor dadu" />
+    <meta name="author" content="Firman" />
 
-    <meta property="og:title" content="dice-web-navigator" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Dadu Dashboard" />
+    <meta name="application-name" content="Dashboard Aplikasi Dadu" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@tabler/icons@2.40.0/icons/device-gamepad.svg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/npm/@tabler/icons@2.40.0/icons/device-gamepad.svg" type="image/svg+xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dashboard Aplikasi Dadu" />
+    <meta property="og:description" content="Dashboard untuk mengakses aplikasi remote dan monitor dadu" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/0f172a/ffffff?text=Dashboard+Aplikasi+Dadu" />
 
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:title" content="Dashboard Aplikasi Dadu" />
+    <meta name="twitter:description" content="Dashboard untuk mengakses aplikasi remote dan monitor dadu" />
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630/0f172a/ffffff?text=Dashboard+Aplikasi+Dadu" />
   </head>
 
   <body>
     <div id="root"></div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>

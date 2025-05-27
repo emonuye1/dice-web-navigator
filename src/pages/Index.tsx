@@ -1,10 +1,42 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Copyright } from "lucide-react";
+import { ExternalLink, Copyright, Download } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Index = () => {
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstallButton, setShowInstallButton] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallButton(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handler);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    
+    if (outcome === 'accepted') {
+      console.log('User accepted the install prompt');
+    }
+    
+    setDeferredPrompt(null);
+    setShowInstallButton(false);
+  };
+
   const webApps = [
     {
       id: "remot-dadu-merah",
@@ -43,9 +75,19 @@ const Index = () => {
           <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2 sm:mb-4">
             Dashboard Aplikasi Dadu
           </h1>
-          <p className="text-lg sm:text-xl text-slate-300">
+          <p className="text-lg sm:text-xl text-slate-300 mb-4">
             Pilih aplikasi yang ingin Anda buka
           </p>
+          
+          {showInstallButton && (
+            <Button 
+              onClick={handleInstallClick}
+              className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg"
+            >
+              <Download className="w-5 h-5 mr-2" />
+              Install Aplikasi ke Desktop
+            </Button>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
