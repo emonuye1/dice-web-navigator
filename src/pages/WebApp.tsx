@@ -8,23 +8,28 @@ const WebApp = () => {
 
   const webApps = {
     "remot-dadu-merah": {
-      title: "Remot Dadu Merah",
+      title: "Remot dadu merah",
       url: "https://firmanuye12.github.io/remot-dadu-merah/",
       color: "bg-red-500 hover:bg-red-600",
     },
-    "monitor-dadu-merah": {
-      title: "Monitor Dadu Merah",
+    "cadangan-remot-dadu-merah": {
+      title: "Cadangan remot dadu merah",
+      url: "https://firmanuye12.github.io/cadangan-remot-merah/",
+      color: "bg-pink-500 hover:bg-pink-600",
+    },
+    "monitor-remot-dadu-merah": {
+      title: "Monitor remot dadu merah",
       url: "https://firmanuye12.github.io/monitor/",
       color: "bg-orange-500 hover:bg-orange-600",
     },
     "remot-dadu-kecrek": {
-      title: "Remot Dadu Kecrek",
+      title: "Remot dadu kecrek",
       url: "https://firmanuye12.github.io/dice-remot/",
       color: "bg-blue-500 hover:bg-blue-600",
     },
     "monitor-dadu-kecrek": {
-      title: "Monitor Dadu Kecrek",
-      url: "https://remote-app-guardian.lovable.app/",
+      title: "Monitor dadu kecrek",
+      url: "https://firmanuye12.github.io/monitor-remot-kecrek-v2/",
       color: "bg-green-500 hover:bg-green-600",
     },
   };
