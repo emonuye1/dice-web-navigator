@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Dashboard Aplikasi Dadu</title>
+    <meta name="description" content="Dashboard untuk mengakses aplikasi remote dan monitor dadu" />
+    <meta name="author" content="Firman" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Dadu Dashboard" />
+    <meta name="application-name" content="Dashboard Aplikasi Dadu" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/@tabler/icons@2.40.0/icons/device-gamepad.svg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/npm/@tabler/icons@2.40.0/icons/device-gamepad.svg" type="image/svg+xml" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        .hidden { display: none; }
+        .card-hover:hover { transform: scale(1.05); }
+        .transition-all { transition: all 0.3s ease; }
+        .backdrop-blur-sm { backdrop-filter: blur(8px); }
+        .min-h-dvh { min-height: 100dvh; }
+        .min-h-70dvh { min-height: 70dvh; }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="min-h-screen p-3 sm:p-6 flex flex-col">
+        <div class="max-w-6xl mx-auto flex-grow">
+            <div class="text-center mb-8 sm:mb-12">
+                <h1 class="text-3xl sm:text-5xl font-bold text-white mb-2 sm:mb-4">
+                    Dashboard Aplikasi Dadu
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-300 mb-4">
+                    Pilih aplikasi yang ingin Anda buka
+                </p>
+                
+                <button id="install-btn" class="hidden bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg inline-flex items-center gap-2">
+                    <i data-lucide="download" class="w-5 h-5"></i>
+                    Install Aplikasi ke Desktop
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
+                <!-- App Cards -->
+                <div class="bg-white/10 border border-white/20 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 card-hover cursor-pointer" onclick="openApp('remot-dadu-merah')">
+                    <div class="p-6">
+                        <div class="text-white text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 mb-3">
+                            <i data-lucide="external-link" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                            Remot dadu merah
+                        </div>
+                        <p class="text-slate-300 text-base sm:text-lg mb-6">
+                            Remote control untuk dadu merah
+                        </p>
+                        <button class="w-full py-4 sm:py-6 text-base sm:text-lg font-semibold text-white bg-red-500 hover:bg-red-600 transition-all duration-300 shadow-lg hover:shadow-xl rounded-md">
+                            Buka Aplikasi
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 border border-white/20 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 card-hover cursor-pointer" onclick="openApp('cadangan-remot-dadu-merah')">
+                    <div class="p-6">
+                        <div class="text-white text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 mb-3">
+                            <i data-lucide="external-link" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                            Cadangan remot dadu merah
+                        </div>
+                        <p class="text-slate-300 text-base sm:text-lg mb-6">
+                            Cadangan remote control untuk dadu merah
+                        </p>
+                        <button class="w-full py-4 sm:py-6 text-base sm:text-lg font-semibold text-white bg-pink-500 hover:bg-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl rounded-md">
+                            Buka Aplikasi
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 border border-white/20 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 card-hover cursor-pointer" onclick="openApp('monitor-remot-dadu-merah')">
+                    <div class="p-6">
+                        <div class="text-white text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 mb-3">
+                            <i data-lucide="external-link" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                            Monitor remot dadu merah
+                        </div>
+                        <p class="text-slate-300 text-base sm:text-lg mb-6">
+                            Monitor untuk remote dadu merah
+                        </p>
+                        <button class="w-full py-4 sm:py-6 text-base sm:text-lg font-semibold text-white bg-orange-500 hover:bg-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl rounded-md">
+                            Buka Aplikasi
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 border border-white/20 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 card-hover cursor-pointer" onclick="openApp('remot-dadu-kecrek')">
+                    <div class="p-6">
+                        <div class="text-white text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 mb-3">
+                            <i data-lucide="external-link" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                            Remot dadu kecrek
+                        </div>
+                        <p class="text-slate-300 text-base sm:text-lg mb-6">
+                            Remote control untuk dadu kecrek
+                        </p>
+                        <button class="w-full py-4 sm:py-6 text-base sm:text-lg font-semibold text-white bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl rounded-md">
+                            Buka Aplikasi
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 border border-white/20 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 card-hover cursor-pointer" onclick="openApp('monitor-dadu-kecrek')">
+                    <div class="p-6">
+                        <div class="text-white text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 mb-3">
+                            <i data-lucide="external-link" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                            Monitor dadu kecrek
+                        </div>
+                        <p class="text-slate-300 text-base sm:text-lg mb-6">
+                            Monitor untuk dadu kecrek
+                        </p>
+                        <button class="w-full py-4 sm:py-6 text-base sm:text-lg font-semibold text-white bg-green-500 hover:bg-green-600 transition-all duration-300 shadow-lg hover:shadow-xl rounded-md">
+                            Buka Aplikasi
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 sm:mt-16 text-center">
+                <p class="text-slate-400">
+                    Klik pada salah satu tombol di atas untuk membuka aplikasi
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright Footer -->
+        <footer class="mt-8 py-4 border-t border-white/20">
+            <div class="max-w-6xl mx-auto text-center">
+                <div class="flex items-center justify-center gap-2 text-slate-400 text-sm">
+                    <i data-lucide="copyright" class="w-4 h-4"></i>
+                    <span>Copyright by Firman</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Web App Page -->
+    <div id="webapp-page" class="hidden min-h-screen min-h-dvh flex flex-col">
+        <!-- Header dengan tombol kembali -->
+        <div class="bg-black/30 backdrop-blur-sm border-b border-white/20 p-3 sm:p-4 flex-shrink-0">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <button onclick="backToDashboard()" class="bg-white/10 border border-white/20 text-white hover:bg-white/20 px-3 py-2 rounded-md inline-flex items-center gap-2 transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline">Kembali</span>
+                    </button>
+                    <h1 id="app-title" class="text-lg sm:text-2xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="external-link" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                        <span class="truncate"></span>
+                    </h1>
+                </div>
+                
+                <button onclick="openInNewTab()" class="bg-white/10 border border-white/20 text-white hover:bg-white/20 px-3 py-2 rounded-md inline-flex items-center gap-2 transition-colors">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Buka di Tab Baru</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Iframe untuk menampilkan aplikasi web -->
+        <div class="flex-grow overflow-hidden">
+            <iframe id="app-iframe" src="" class="w-full h-full border-0 min-h-70dvh" title="" allow="fullscreen" loading="lazy" style="width: 100%; height: 100%; min-height: calc(100dvh - 120px)">
+            </iframe>
+        </div>
+
+        <!-- Copyright Footer -->
+        <footer class="py-2 sm:py-4 border-t border-white/20 bg-black/20 flex-shrink-0">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-2 text-slate-400 text-xs sm:text-sm">
+                    <i data-lucide="copyright" class="w-3 h-3 sm:w-4 sm:h-4"></i>
+                    <span>Copyright by Firman</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Error Page -->
+    <div id="error-page" class="hidden min-h-screen flex flex-col">
+        <div class="flex-grow flex items-center justify-center p-4">
+            <div class="text-center text-white">
+                <h1 class="text-2xl sm:text-3xl font-bold mb-4">Aplikasi Tidak Ditemukan</h1>
+                <button onclick="backToDashboard()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md inline-flex items-center gap-2">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    Kembali ke Dashboard
+                </button>
+            </div>
+        </div>
+        
+        <!-- Copyright Footer -->
+        <footer class="py-4 border-t border-white/20">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-2 text-slate-400 text-sm">
+                    <i data-lucide="copyright" class="w-4 h-4"></i>
+                    <span>Copyright by Firman</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Web Apps Configuration
+        const webApps = {
+            "remot-dadu-merah": {
+                title: "Remot dadu merah",
+                url: "https://firmanuye12.github.io/remot-dadu-merah/",
+            },
+            "cadangan-remot-dadu-merah": {
+                title: "Cadangan remot dadu merah",
+                url: "https://firmanuye12.github.io/cadangan-remot-merah/",
+            },
+            "monitor-remot-dadu-merah": {
+                title: "Monitor remot dadu merah",
+                url: "https://firmanuye12.github.io/monitor/",
+            },
+            "remot-dadu-kecrek": {
+                title: "Remot dadu kecrek",
+                url: "https://firmanuye12.github.io/dice-remot/",
+            },
+            "monitor-dadu-kecrek": {
+                title: "Monitor dadu kecrek",
+                url: "https://firmanuye12.github.io/monitor-remot-kecrek-v2/",
+            },
+        };
+
+        let currentAppUrl = '';
+
+        // PWA Install functionality
+        let deferredPrompt;
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.remove('hidden');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            }
+            
+            deferredPrompt = null;
+            installBtn.classList.add('hidden');
+        });
+
+        // Navigation functions
+        function openApp(appId) {
+            const app = webApps[appId];
+            if (!app) {
+                showError();
+                return;
+            }
+
+            currentAppUrl = app.url;
+            document.getElementById('app-title').querySelector('span').textContent = app.title;
+            document.getElementById('app-iframe').src = app.url;
+            document.getElementById('app-iframe').title = app.title;
+
+            showPage('webapp-page');
+        }
+
+        function backToDashboard() {
+            showPage('dashboard-page');
+            // Clear iframe to stop loading
+            document.getElementById('app-iframe').src = '';
+        }
+
+        function openInNewTab() {
+            if (currentAppUrl) {
+                window.open(currentAppUrl, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        function showError() {
+            showPage('error-page');
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.getElementById('dashboard-page').classList.add('hidden');
+            document.getElementById('webapp-page').classList.add('hidden');
+            document.getElementById('error-page').classList.add('hidden');
+
+            // Show selected page
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        // Initialize Lucide icons
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
